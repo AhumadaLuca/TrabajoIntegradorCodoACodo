@@ -69,6 +69,7 @@
     #centrado{
         transform: translate(-50%, -50%);
         width: 350px;
+        top: 200px;
     }
     #centrado h5{
         text-align: center;
@@ -86,6 +87,7 @@
     #centrado{
         width: 300px;
         font-size: 2.5mm;
+        top: 170px;
     }
     #centrado h5{
         font-size: 4mm;
