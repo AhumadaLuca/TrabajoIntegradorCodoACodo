@@ -1,0 +1,97 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap');
+
+:root {
+    font-family: 'Ubuntu', sans-serif;    
+    font-size: 16px;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.logo-navbar{
+    width: 100px;
+}
+
+.text-form{
+    text-decoration-style: dotted;
+    color: black;
+}
+
+#footer{
+    background: linear-gradient(to right, #1d3744, #1e5371);
+}
+
+#textoFooter{
+    margin-right: 4rem;
+    margin-left: 4rem;
+}
+
+#imagenC{
+    filter: brightness(50%);
+}
+
+#centrado{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(0, -50%);
+    right: 10%;
+}
+
+@media screen and (max-width: 1240px) {
+    #centrado{
+        font-size: smaller;
+    }
+}
+@media screen and (max-width: 1033px) {
+    #centrado{
+        font-size: 3mm;
+    }
+}
+
+@media screen and (max-width: 925px) {
+    #textoFoto{
+        font-size: 12px;
+    }
+}
+
+@media screen and (max-width: 749px){
+    #botonImagen{
+        font-size: 12px;
+     height: 25%;
+    }
+}
+
+@media screen and (max-width: 601px) {
+    #centrado{
+        transform: translate(-50%, -50%);
+        width: 350px;
+    }
+    #centrado h5{
+        text-align: center;
+    }
+    #centrado p{
+        text-align: center;
+    }
+    #centrado div{
+        display: flex;
+        justify-content: center;
+    }
+}
+
+@media screen and (max-width: 375px){
+    #centrado{
+        width: 300px;
+        font-size: 2.5mm;
+    }
+    #centrado h5{
+        font-size: 4mm;
+    }
+}
+    
+
+
+
