@@ -1,5 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap');
 
+/* PESTAÑA INDEX */
+
 :root {
     font-family: 'Ubuntu', sans-serif;    
     font-size: 16px;
@@ -92,7 +94,47 @@
         font-size: 4mm;
     }
 }
+
+/* PESTAÑA TICKETS */
     
+#cardTickets{
+width: 18rem;
+}
+#contenedor{
+    width: 320px;
+}
 
+@media screen and (max-width: 991px){
+    #cardTickets{
+        margin-bottom: 20px;
+    }
+}
 
-
+@media screen and (max-width: 767px){
+    #contenedor{
+        width: 240px;
+    }
+    #cardTickets{
+        width: 208px;
+    }
+    #cardTickets2{
+        width: 208px;
+    }
+    #textCard{
+        font-size: 4mm;
+    }
+}
+@media screen and (max-width: 575px){
+    #cardTickets{
+        width: 144px;
+    }
+    #cardTickets2{
+        width: 144px;
+    }
+    #textCard{
+        font-size: 3mm;
+    }
+    #textCard2{
+        font-size: 7mm;
+    }
+}
