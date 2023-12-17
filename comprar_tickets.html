@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="integrador.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
 </head>
 <body>
     <header>
@@ -97,20 +96,20 @@
         <div class="row g-0 justify-content-center">
 
           <div class="col col-12 col-sm-6 col-md-6 col-lg-4 mb-3 px-3">
-            <input type="text" class="form-control" placeholder="Nombre">
+            <input type="text" id="nombre" class="form-control" placeholder="Nombre" required>
           </div>
           <div class="col col-12 col-sm-6 col-md-6 col-lg-4 mb-3 px-3">
-            <input type="text" class="form-control" placeholder="Apellido">
+            <input type="text" id="apellido" class="form-control" placeholder="Apellido" required>
           </div>
           <div class="col col-12 col-sm-12 col-md-12 col-lg-8  px-3">
-            <input type="email" class="form-control" placeholder="Correo">
+            <input type="email" id="email" class="form-control" placeholder="Correo" required>
           </div>
 
           <div class="row g-0 justify-content-center">
 
             <div class="col col-12 col-sm-6 col-md-6 col-lg-4 mb-3 px-3">
               <div class="form-text ps-0 mb-2 mt-3 text-dark">Cantidad</div>
-              <input type="text" class="form-control" placeholder="Cantidad"  id="cantidad">
+              <input type="text" class="form-control" placeholder="Cantidad"  id="cantidad" required>
             </div>
             <div class="col col-12 col-sm-6 col-md-6 col-lg-4 mb-3 px-3">
               <div class="form-text ps-0 mb-2 mt-3 text-dark">Categoria</div>
@@ -119,22 +118,131 @@
                 <option value="2">Trainee</option>
                 <option value="3">Junior</option>
               </select>
-            </div>
+            </div>        
 
-            <div class="alert alert-success col col-12 col-sm-12 col-md-12 col-lg-7 mt-3" style="margin-bottom: 18px;" role="alert" id="mensaje">
-              Total a pagar: $
-            </div>
           </div>
         </div>
         <div class="row g-0 justify-content-center mt-4">
-          <div class="col col-12 col-sm-6 col-md-6 col-lg-4  d-grid gap-2 px-3">
-            <button class="btn btn-primary btn-lg mb-3 mb-sm-0" type="button" id="borrar" style="background-color: #97c93f; border-color: #97c93f;">Borrar</button>
+          
+          <div class="col col-12 col-sm-12 col-md-12 col-lg-8 mb-3 d-grid gap-2 px-3">
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-primary btn-lg" id="resumen" data-bs-toggle="modal" data-bs-target="#resumenModal" style="background-color: #97c93f; border-color: #97c93f;">
+              Resumen
+            </button>
           </div>
-          <div class="col col-12 col-sm-6 col-md-6 col-lg-4  d-grid gap-2 px-3">
-            <button class="btn btn-primary btn-lg" type="button" id="resumen" style="background-color: #97c93f; border-color: #97c93f;">Resumen</button>
+          <div class="col col-12 col-sm-12 col-md-12 col-lg-8 d-grid gap-2 px-3">
+            <button class="btn btn-primary btn-lg mb-3 mb-sm-0" type="button" id="obtenerCompradores" style="background-color: #97c93f; border-color: #97c93f;">Historial de Compras</button>
           </div>
         </div>
       </form>
+
+      <div class="container">
+        <div class="row">
+        </div>
+            <div class="row">
+                <div class="col-12 mt-2" id="msj"></div>
+                <div class="col-12">
+                    <div id="users">
+                        <table class="table">
+                            <thead id="titleRows">
+                             
+                            </thead>
+                            <tbody id="usersRows">
+                            </tbody>
+                          </table>
+                    </div>
+                </div>
+        </div>
+    </div>
+
+      
+<!-- Modal Confirmar datos de compra -->
+<div class="modal fade" id="resumenModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered text-center align-content-center">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="fs-5">CONFIRMACIÓN DE COMPRA</h1>
+      </div>
+      <div class="modal-body" id="confirmarDatos">
+        
+      </div>
+      <div class="modal-footer" id="botonesModal">
+        <div>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Volver</button>
+        </div>
+        <div>
+          <button type="submit" class="btn btn-primary" data-bs-dismiss="modal" id="finalizarCompra" onclick="crearComprador()">Finalizar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal modificación de comprador -->
+<div class="modal fade" id="editarModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered text-center">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="fs-5">MODIFICACIÓN DE COMPRA</h1>
+      </div>
+      <div class="modal-body">
+        <img src="imagenes_integrador_front/usuarioFormulario.png" style="width: 100px">
+          <fieldset class="mt-3">
+            <h6>Nombre</h6><input name="nombre" id="nombreActualizar">
+            <h6 class="mt-2">Apellido</h6><input name="apellido" id="apellidoActualizar">
+            <h6 class="mt-2">Email</h6><input name="email" id="emailActualizar">
+            <h6 class="mt-2">Cantidad</h6><input name="cantidad" id="cantidadActualizar">
+            <h6 class="mt-2">Categoria</h6>
+            <select name="categoria" id="categoriaActualizar">
+              
+            </select>
+           </fieldset>
+      </div>
+      <div class="modal-footer">
+        <div>
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Volver</button>
+        </div>
+        <div>
+          <button style="background-color: #97c93f; border-color: #97c93f;" type="submit" class="btn btn-primary" data-bs-target="#finalizadoModal" data-bs-toggle="modal" onclick="actualizarComprador()">Actualizar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Confirmar eliminar comprador -->
+<div class="modal fade" id="eliminarModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered text-center">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="fs-5">ELIMINACIÓN DE COMPRA</h1>
+      </div>
+      <div class="modal-body">
+        <img src="imagenes_integrador_front/usuarioAtencion.png" style="width: 100px">
+        <h6 class="mt-3">¿Estás seguro de <strong class="text-danger">ELIMINAR</strong> esta compra?</h6>
+      </div>
+      <div class="modal-footer" id="botonesEliminar">
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal compra/editar/eliminar con exito -->
+<div class="modal fade" id="finalizadoModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered text-center">
+    <div class="modal-content">
+      <div class="modal-header">
+      </div>
+      <div class="modal-body" id="finalizarModal">
+
+      </div>
+      <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Volver</button>
+      </div>
+    </div>
+  </div>
+</div>
 
       <footer class="mt-4 py-3" id="footer">
         <ul class="nav justify-content-center align-items-center">
