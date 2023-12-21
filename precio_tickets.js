@@ -17,7 +17,7 @@ function calcular(){
     let categoria = Number(document.getElementById('categoria').value);
 
 
-    if(cantidad != null && nombre != null && apellido != null && email != null){
+    if(nombre != "" && apellido != "" && email != ""){
         if(cantidad > 0){
             if(categoria == 1){
                 total = (cantidad * 200) * 0.2;
@@ -72,6 +72,19 @@ function calcular(){
             </div>
             `;
     }
+    }else{
+        document.getElementById('confirmarDatos').innerHTML =
+            `
+            <img src="imagenes_integrador_front/usuarioError.png" style="width: 100px">
+               <h5 class="mt-3">¡Hay datos faltantes y/o incorrectos!</h5>
+               <h6>Por favor, corrobore la información</h6>
+            `;
+            document.getElementById('botonesModal').innerHTML = 
+            `
+            <div>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Volver</button>
+            </div>
+            `;
     }
 }
 
